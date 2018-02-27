@@ -1,0 +1,14 @@
+/.tmp/
+/.sass-cache/
+/bower_components/
+/node_modules/
+/.idea/
+/release/
+/test/
+/preprod/
+/prod/
+/app/scripts/hobbynote-test-app.js
+/app/scripts/hobbynote-test-app.js.map
+/app/scripts/hobbynote-test-app.min.js
+/app/scripts/hobbynote-test-app.min.js.map
+/app/scripts/vendors.min.js
