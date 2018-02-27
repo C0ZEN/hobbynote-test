@@ -9,7 +9,7 @@
  */
 /* eslint key-spacing:"off" */
 module.exports = {
-	dev    : {
+	dev       : {
 		options: {
 			keepSpecialComments: 0,
 			sourceMap          : true
@@ -17,7 +17,7 @@ module.exports = {
 		files  : [
 			{
 				'<%= paths.app %>/styles/css/hobbynote-test-app.min.css': '<%= paths.app %>/styles/css/hobbynote-test-app.css',
-				'<%= paths.app %>/styles/css/init-loader.min.css'        : '<%= paths.app %>/styles/css/init-loader.css'
+				'<%= paths.app %>/styles/css/init-loader.min.css'       : '<%= paths.app %>/styles/css/init-loader.css'
 			}
 		]
 	},
@@ -32,7 +32,7 @@ module.exports = {
 			}
 		]
 	},
-	vendors: {
+	vendors   : {
 		options: {
 			keepSpecialComments: 0,
 			sourceMap          : false

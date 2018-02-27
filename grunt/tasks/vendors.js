@@ -9,14 +9,15 @@
  */
 /* eslint valid-jsdoc:"off" */
 module.exports = function (grunt) {
-	grunt.registerTask('vendors', 'Process the vendors', () => {
+	grunt.registerTask('vendors', 'Process the vendors', () = > {
 		grunt.task.run([
-			'wiredep',
-			'copy:vendors',
-			'string-replace:vendors',
-			'useminPrepare',
-			'usemin',
-			'concat:generated'
-		]);
-	});
+		'wiredep',
+		'copy:vendors',
+		'string-replace:vendors',
+		'useminPrepare',
+		'usemin',
+		'concat:generated'
+	]);
+})
+	;
 };

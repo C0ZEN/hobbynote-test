@@ -1,0 +1,23 @@
+{
+	"name": "Hobbynote Test App",
+	"description": "Just a test for Hobbynote",
+	"author": {
+		"@type": "Person",
+		"name": "Geoffrey TESTELIN"
+	},
+	"@type": "WebSite",
+	"url": "http://exemple.com/",
+	"image": null,
+	"publisher": {
+		"@type": "Organization",
+		"logo": {
+			"@type": "ImageObject",
+			"url": null
+		},
+		"name": "Hobbynote Test App"
+	},
+	"headline": "Just a test for Hobbynote",
+	"dateModified": null,
+	"datePublished": null,
+	"@context": "http://schema.org"
+}

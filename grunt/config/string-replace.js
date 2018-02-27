@@ -21,7 +21,7 @@ module.exports = {
 		src    : '<%= paths.app %>/config/tpls/vendors-generated.tpl.html',
 		dest   : '<%= paths.app %>/config/tpls/vendors-generated.tpl.html'
 	},
-	cssPaths: {
+	cssPaths : {
 		options: {
 			replacements: [
 				{
@@ -36,15 +36,15 @@ module.exports = {
 		}
 	},
 	changelog: {
-        src    : 'CHANGELOG.md',
-        dest   : 'CHANGELOG.md',
-        options: {
-            replacements: [
-                {
-                    pattern    : /(\#\# \[Unreleased\])/g, // eslint-disable-line
-                    replacement: '## [Unreleased]\n\n## [<%= newVersion %>]'
-                }
-            ]
-        }
-    }
+		src    : 'CHANGELOG.md',
+		dest   : 'CHANGELOG.md',
+		options: {
+			replacements: [
+				{
+					pattern    : /(\#\# \[Unreleased\])/g, // eslint-disable-line
+					replacement: '## [Unreleased]\n\n## [<%= newVersion %>]'
+				}
+			]
+		}
+	}
 };

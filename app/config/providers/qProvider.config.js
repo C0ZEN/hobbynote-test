@@ -21,7 +21,7 @@
 
 	function provider($qProvider, config) {
 		$qProvider
-            .errorOnUnhandledRejections(config.deferred.errorOnUnhandledRejections);
+			.errorOnUnhandledRejections(config.deferred.errorOnUnhandledRejections);
 	}
 
 })(window.angular);

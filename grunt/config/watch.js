@@ -60,7 +60,7 @@ module.exports = {
 			'pug:html'
 		]
 	},
-	index: {
+	index     : {
 		files: [
 			'<%= paths.app %>/config/tpls/index.tpl.pug'
 		],

@@ -84,39 +84,39 @@ module.exports = function (grunt) {
 				]
 			}
 		},
-		chooseTarget     : {
-            options: {
-                questions: [
-                    {
-                        config : 'target',
-                        type   : 'list',
-                        message: 'Target for the release:',
-                        choices: [
-                            {
-                                name   : 'test',
-                                value  : 'test',
-                                checked: true
-                            },
-                            {
-                                name : 'preprod',
-                                value: 'preprod'
-                            },
-                            {
-                                name : 'prod',
-                                value: 'prod'
-                            }
-                        ],
-                        filter(target) {
+		chooseTarget      : {
+			options: {
+				questions: [
+					{
+						config : 'target',
+						type   : 'list',
+						message: 'Target for the release:',
+						choices: [
+							{
+								name   : 'test',
+								value  : 'test',
+								checked: true
+							},
+							{
+								name : 'preprod',
+								value: 'preprod'
+							},
+							{
+								name : 'prod',
+								value: 'prod'
+							}
+						],
+						filter(target) {
 
-                            // Save the target
-                            grunt.config.set('currentTarget', target);
+							// Save the target
+							grunt.config.set('currentTarget', target);
 
-                            // Return the target
-                            return target;
-                        }
-                    }
-                ]
-            }
-        }
+							// Return the target
+							return target;
+						}
+					}
+				]
+			}
+		}
 	};
 };

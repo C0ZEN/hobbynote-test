@@ -9,19 +9,19 @@
  */
 /* eslint key-spacing:"off" */
 module.exports = {
-	styles    : {
+	styles      : {
 		expand: true,
 		cwd   : '.tmp/release/styles',
 		src   : '*.css',
 		dest  : '<%= currentTarget %>/styles/css'
 	},
-	languages : {
+	languages   : {
 		expand: true,
 		cwd   : '<%= paths.app %>/languages/min',
 		dest  : '<%= currentTarget %>/languages/',
 		src   : '*.json'
 	},
-	other     : {
+	other       : {
 		files: [
 			{
 				expand: true,
@@ -31,15 +31,15 @@ module.exports = {
 			}
 		]
 	},
-	release   : {
+	release     : {
 		files: {
 			'<%= currentTarget %>/styles/hobbynote-test-app.css'    : '<%= paths.app %>/styles/css/hobbynote-test-app.css',
 			'<%= currentTarget %>/styles/hobbynote-test-app.min.css': '<%= paths.app %>/styles/css/hobbynote-test-app.min.css',
-			'<%= currentTarget %>/styles/init-loader.css'            : '<%= paths.app %>/styles/css/init-loader.css',
-			'<%= currentTarget %>/styles/init-loader.min.css'        : '<%= paths.app %>/styles/css/init-loader.min.css'
+			'<%= currentTarget %>/styles/init-loader.css'           : '<%= paths.app %>/styles/css/init-loader.css',
+			'<%= currentTarget %>/styles/init-loader.min.css'       : '<%= paths.app %>/styles/css/init-loader.min.css'
 		}
 	},
-	components: {
+	components  : {
 		files: [
 			{
 				expand: true,
@@ -53,7 +53,7 @@ module.exports = {
 			}
 		]
 	},
-	i18n      : {
+	i18n        : {
 		files: {
 			'<%= currentTarget %>/languages/i18n/fr.js': 'bower_components/angular-i18n/angular-locale_fr.js'
 		}
@@ -74,5 +74,10 @@ module.exports = {
 	vendorsJs   : {
 		src : '.tmp/vendors/vendors.js',
 		dest: '<%= currentTarget %>/scripts/vendors.min.js'
+	},
+	fonts       : {
+		expand: true,
+		dest  : '<%= currentTarget %>/fonts',
+		src   : '<%= paths.app %>/fonts'
 	}
 };

@@ -21,10 +21,10 @@
 
 	function provider(localStorageServiceProvider, config) {
 		localStorageServiceProvider
-            .setPrefix(config.app.name)
-            .setStorageType('localStorage')
-            .setDefaultToCookie(false)
-            .setNotify(false, false);
+			.setPrefix(config.app.name)
+			.setStorageType('localStorage')
+			.setDefaultToCookie(false)
+			.setNotify(false, false);
 	}
 
 })(window.angular);

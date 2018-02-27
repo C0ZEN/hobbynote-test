@@ -10,10 +10,10 @@
 /* eslint key-spacing:"off" */
 module.exports = function (grunt) {
 	return {
-		options: {
+		options          : {
 			inline: true
 		},
-		dev    : {
+		dev              : {
 			options: {
 				context: {
 					config    : grunt.file.read('app/config/targets/config.dev.json'),
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 				'<%= paths.app %>/index.html'             : '<%= paths.app %>/config/tpls/index.tpl.html'
 			}
 		},
-		test   : {
+		test             : {
 			options: {
 				context: {
 					config    : grunt.file.read('app/config/targets/config.test.json'),
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 				'<%= currentTarget %>/index.html'         : '<%= paths.app %>/config/tpls/index.tpl.html'
 			}
 		},
-		preprod: {
+		preprod          : {
 			options: {
 				context: {
 					config    : grunt.file.read('app/config/targets/config.preprod.json'),
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
 				'<%= currentTarget %>/index.html'         : '<%= paths.app %>/config/tpls/index.tpl.html'
 			}
 		},
-		prod   : {
+		prod             : {
 			options: {
 				context: {
 					config    : grunt.file.read('app/config/targets/config.prod.json'),
@@ -65,41 +65,41 @@ module.exports = function (grunt) {
 				'<%= currentTarget %>/index.html'         : '<%= paths.app %>/config/tpls/index.tpl.html'
 			}
 		},
-		manifest   : {
-            options: {
-                context: {
-                    config: grunt.file.readJSON('package.json')
-                }
-            },
-            src    : '<%= paths.app %>/config/tpls/manifest.tpl.json',
-            dest   : '<%= currentTarget %>/manifest.json'
-        },
-        devManifest: {
-            options: {
-                context: {
-                    config: grunt.file.readJSON('package.json')
-                }
-            },
-            src    : '<%= paths.app %>/config/tpls/manifest.tpl.json',
-            dest   : '<%= paths.app %>/manifest.json'
-        },
-        structuredData   : {
-            options: {
-                context: {
-                    config: grunt.file.readJSON('app/config/targets/config.dev.json')
-                }
-            },
-            src    : '<%= paths.app %>/config/tpls/structured-data.tpl.json',
-            dest   : '<%= currentTarget %>/structured-data.json'
-        },
-        devStructuredData: {
-            options: {
-                context: {
-                    config: grunt.file.readJSON('app/config/targets/config.dev.json')
-                }
-            },
-            src    : '<%= paths.app %>/config/tpls/structured-data.tpl.json',
-            dest   : '<%= paths.app %>/structured-data.json'
-        }
+		manifest         : {
+			options: {
+				context: {
+					config: grunt.file.readJSON('package.json')
+				}
+			},
+			src    : '<%= paths.app %>/config/tpls/manifest.tpl.json',
+			dest   : '<%= currentTarget %>/manifest.json'
+		},
+		devManifest      : {
+			options: {
+				context: {
+					config: grunt.file.readJSON('package.json')
+				}
+			},
+			src    : '<%= paths.app %>/config/tpls/manifest.tpl.json',
+			dest   : '<%= paths.app %>/manifest.json'
+		},
+		structuredData   : {
+			options: {
+				context: {
+					config: grunt.file.readJSON('app/config/targets/config.dev.json')
+				}
+			},
+			src    : '<%= paths.app %>/config/tpls/structured-data.tpl.json',
+			dest   : '<%= currentTarget %>/structured-data.json'
+		},
+		devStructuredData: {
+			options: {
+				context: {
+					config: grunt.file.readJSON('app/config/targets/config.dev.json')
+				}
+			},
+			src    : '<%= paths.app %>/config/tpls/structured-data.tpl.json',
+			dest   : '<%= paths.app %>/structured-data.json'
+		}
 	};
 };

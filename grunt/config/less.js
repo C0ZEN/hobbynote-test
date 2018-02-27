@@ -16,7 +16,7 @@ module.exports = {
 		},
 		files  : {
 			'<%= paths.app %>/styles/css/hobbynote-test-app.css': '<%= paths.app %>/styles/less/hobbynote-test-app.less',
-			'<%= paths.app %>/styles/css/init-loader.css'        : '<%= paths.app %>/styles/less/hobbynote-test-app.loader.less'
+			'<%= paths.app %>/styles/css/init-loader.css'       : '<%= paths.app %>/styles/less/hobbynote-test-app.loader.less'
 		}
 	},
 	tmp : {
@@ -26,7 +26,7 @@ module.exports = {
 		},
 		files  : {
 			'.tmp/release/styles/hobbynote-test-app.css': '<%= paths.app %>/styles/less/hobbynote-test-app.less',
-			'.tmp/release/styles/init-loader.css'        : '<%= paths.app %>/styles/less/hobbynote-test-app.loader.less'
+			'.tmp/release/styles/init-loader.css'       : '<%= paths.app %>/styles/less/hobbynote-test-app.loader.less'
 		}
 	}
 };

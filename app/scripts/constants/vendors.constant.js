@@ -8,11 +8,11 @@
  * Version: 0.0.0
  */
 (function (angular) {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('hobbynoteTestApp')
-        .constant('moment', moment)
-        .constant('_', _);
+	angular
+		.module('hobbynoteTestApp')
+		.constant('moment', moment)
+		.constant('_', _);
 
 })(window.angular);
