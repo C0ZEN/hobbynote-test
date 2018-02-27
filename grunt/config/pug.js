@@ -20,13 +20,11 @@ module.exports = {
 				src   : '**/*.pug',
 				dest  : '<%= paths.app %>',
 				expand: true,
-				rename: ($dest, $src) = > {
-				return($dest + '/' + $src
-).
-replace('.pug', '.html');
-}
-}
-]
-}
-}
-;
+				rename: ($dest, $src) => {
+					return ($dest + '/' + $src
+					).replace('.pug', '.html');
+				}
+			}
+		]
+	}
+};
