@@ -381,5 +381,6 @@
 		"currency": "EUR",
 		"currencyDisplay": "symbol",
 		"useGrouping": true
-	}
+	},
+	"defaultUrl": "/main"
 }
