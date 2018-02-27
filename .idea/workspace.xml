@@ -2,52 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="537278d3-08a5-4cb5-adb8-ce02d247fee8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/gtestelin.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/fonts/DJB Get Digital.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/fonts/Linebeam.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/images/jpg/logo_hobbynote.jpg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/medias/videos/explosion.mp4" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/structured-data.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/Cahier des charges.docx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/DJB Get Digital.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/Linebeam.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/bomb.psd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/commentaires.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/explosion.mp4" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ressources/logo_hobbynote.jpg" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/config/providers/compileProvider.config.js" afterPath="$PROJECT_DIR$/app/config/providers/compileProvider.config.js" />
-      <change beforePath="$PROJECT_DIR$/app/config/providers/localStorageProvider.config.js" afterPath="$PROJECT_DIR$/app/config/providers/localStorageProvider.config.js" />
-      <change beforePath="$PROJECT_DIR$/app/config/providers/logExProvider.config.js" afterPath="$PROJECT_DIR$/app/config/providers/logExProvider.config.js" />
-      <change beforePath="$PROJECT_DIR$/app/config/providers/qProvider.config.js" afterPath="$PROJECT_DIR$/app/config/providers/qProvider.config.js" />
-      <change beforePath="$PROJECT_DIR$/app/config/targets/config.dev.json" afterPath="$PROJECT_DIR$/app/config/targets/config.dev.json" />
-      <change beforePath="$PROJECT_DIR$/app/config/targets/config.preprod.json" afterPath="$PROJECT_DIR$/app/config/targets/config.preprod.json" />
-      <change beforePath="$PROJECT_DIR$/app/config/targets/config.prod.json" afterPath="$PROJECT_DIR$/app/config/targets/config.prod.json" />
-      <change beforePath="$PROJECT_DIR$/app/config/targets/config.test.json" afterPath="$PROJECT_DIR$/app/config/targets/config.test.json" />
-      <change beforePath="$PROJECT_DIR$/app/config/tpls/index.tpl.pug" afterPath="$PROJECT_DIR$/app/config/tpls/index.tpl.pug" />
-      <change beforePath="$PROJECT_DIR$/app/config/tpls/manifest.tpl.json" afterPath="$PROJECT_DIR$/app/config/tpls/manifest.tpl.json" />
-      <change beforePath="$PROJECT_DIR$/app/config/tpls/structured-data.tpl.json" afterPath="$PROJECT_DIR$/app/config/tpls/structured-data.tpl.json" />
-      <change beforePath="$PROJECT_DIR$/app/languages/en/global.json" afterPath="$PROJECT_DIR$/app/languages/en/global.json" />
-      <change beforePath="$PROJECT_DIR$/app/languages/fr/global.json" afterPath="$PROJECT_DIR$/app/languages/fr/global.json" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/constants/vendors.constant.js" afterPath="$PROJECT_DIR$/app/scripts/constants/vendors.constant.js" />
-      <change beforePath="$PROJECT_DIR$/app/styles/less/hobbynote-test-app.less" afterPath="$PROJECT_DIR$/app/styles/less/hobbynote-test-app.less" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/copy.js" afterPath="$PROJECT_DIR$/grunt/config/copy.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/cssmin.js" afterPath="$PROJECT_DIR$/grunt/config/cssmin.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/less.js" afterPath="$PROJECT_DIR$/grunt/config/less.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/preprocess.js" afterPath="$PROJECT_DIR$/grunt/config/preprocess.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/prompt.js" afterPath="$PROJECT_DIR$/grunt/config/prompt.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/pug.js" afterPath="$PROJECT_DIR$/grunt/config/pug.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/string-replace.js" afterPath="$PROJECT_DIR$/grunt/config/string-replace.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/config/watch.js" afterPath="$PROJECT_DIR$/grunt/config/watch.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/internal.bump.js" afterPath="$PROJECT_DIR$/grunt/tasks/internal.bump.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/internal.changelogRequired.js" afterPath="$PROJECT_DIR$/grunt/tasks/internal.changelogRequired.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/internal.release.js" afterPath="$PROJECT_DIR$/grunt/tasks/internal.release.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/jsMin.js" afterPath="$PROJECT_DIR$/grunt/tasks/jsMin.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/languages.js" afterPath="$PROJECT_DIR$/grunt/tasks/languages.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/releaseBump.js" afterPath="$PROJECT_DIR$/grunt/tasks/releaseBump.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/serve.js" afterPath="$PROJECT_DIR$/grunt/tasks/serve.js" />
-      <change beforePath="$PROJECT_DIR$/grunt/tasks/vendors.js" afterPath="$PROJECT_DIR$/grunt/tasks/vendors.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -302,7 +258,7 @@
       <updated>1519735339635</updated>
       <workItem from="1519735341462" duration="1195000" />
       <workItem from="1519741608004" duration="880000" />
-      <workItem from="1519756905288" duration="549000" />
+      <workItem from="1519756905288" duration="580000" />
     </task>
     <task id="LOCAL-00001" summary="### Added&#10;- Files generated by the generator-cozen-angular">
       <created>1519741717817</created>
@@ -325,11 +281,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519741766957</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="### Added&#10;- Resources&#10;&#10;### Changed&#10;- Refactored">
+      <created>1519757594805</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1519757594805</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2624000" />
+    <option name="totallyTimeSpent" value="2655000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -375,7 +338,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="### Added&#10;- Files generated by the generator-cozen-angular" />
-    <option name="LAST_COMMIT_MESSAGE" value="### Added&#10;- Files generated by the generator-cozen-angular" />
+    <MESSAGE value="### Added&#10;- Resources&#10;&#10;### Changed&#10;- Refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="### Added&#10;- Resources&#10;&#10;### Changed&#10;- Refactored" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
