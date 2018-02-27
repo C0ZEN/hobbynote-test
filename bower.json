@@ -25,12 +25,12 @@
 		"angular-dynamic-locale": "^0.1.32",
 		"lodash": "^4.17.5",
 		"animate.css": "^3.5.2",
-		"angular-local-storage": "^0.7.1"
+		"angular-local-storage": "^0.7.1",
+		"webicon": "^0.10.7"
 	},
 	"devDependencies": {},
 	"appPath": "app",
 	"releasePath": "release",
-	"overrides": {
-	},
+	"overrides": {},
 	"ignore": []
 }

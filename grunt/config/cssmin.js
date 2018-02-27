@@ -16,8 +16,7 @@ module.exports = {
 		},
 		files  : [
 			{
-				'<%= paths.app %>/styles/css/hobbynote-test-app.min.css': '<%= paths.app %>/styles/css/hobbynote-test-app.css',
-				'<%= paths.app %>/styles/css/init-loader.min.css'       : '<%= paths.app %>/styles/css/init-loader.css'
+				'<%= paths.app %>/styles/css/hobbynote-test-app.min.css': '<%= paths.app %>/styles/css/hobbynote-test-app.css'
 			}
 		]
 	},

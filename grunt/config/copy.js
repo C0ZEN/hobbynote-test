@@ -34,9 +34,7 @@ module.exports = {
 	release     : {
 		files: {
 			'<%= currentTarget %>/styles/hobbynote-test-app.css'    : '<%= paths.app %>/styles/css/hobbynote-test-app.css',
-			'<%= currentTarget %>/styles/hobbynote-test-app.min.css': '<%= paths.app %>/styles/css/hobbynote-test-app.min.css',
-			'<%= currentTarget %>/styles/init-loader.css'           : '<%= paths.app %>/styles/css/init-loader.css',
-			'<%= currentTarget %>/styles/init-loader.min.css'       : '<%= paths.app %>/styles/css/init-loader.min.css'
+			'<%= currentTarget %>/styles/hobbynote-test-app.min.css': '<%= paths.app %>/styles/css/hobbynote-test-app.min.css'
 		}
 	},
 	components  : {

@@ -24,7 +24,8 @@
 			'pascalprecht.translate',
 			'tmh.dynamicLocale',
 			'LocalStorageModule',
-			'log.ex.uo'
+			'log.ex.uo',
+			'webicon'
 		]);
 
 })(window.angular);
