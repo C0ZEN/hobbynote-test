@@ -27,7 +27,9 @@
 
 		vm.methods = {};
 
-		vm.data = {};
+		vm.data = {
+			bombScreenText: '--:--'
+		};
 	}
 
 })(window.angular);

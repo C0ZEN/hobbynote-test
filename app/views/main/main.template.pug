@@ -1,2 +1,9 @@
 .main-container
-	webicon(icon="bomb")
+
+	//- The bomb image
+	webicon.bomb(
+	icon="bomb")
+
+	//- The text over the bomb
+	bomb-screen(
+	bomb-screen-text="{{ vm.data.bombScreenText }}")

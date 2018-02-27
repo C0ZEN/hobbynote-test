@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - New view `main`
 - New provider `urlRouterProvider` to configure the default route
 - Webicon bower dependency
+- New directive `bomb-screen`
 
 ### Changed
 - Refactored ES6 stuff to avoid issues
