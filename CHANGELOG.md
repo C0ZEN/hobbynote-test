@@ -11,3 +11,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Refactored ES6 stuff to avoid issues
+
+### Removed
+- Useless stuff
