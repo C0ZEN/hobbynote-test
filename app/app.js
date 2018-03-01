@@ -25,7 +25,8 @@
 			'tmh.dynamicLocale',
 			'LocalStorageModule',
 			'log.ex.uo',
-			'webicon'
+			'webicon',
+			'timer'
 		]);
 
 })(window.angular);

@@ -16,8 +16,6 @@ module.exports = function (grunt) {
 			'clean:devIndex',
 			'pug:html',
 			'preprocess:' + grunt.config.get('currentTarget'),
-			'preprocess:manifest',
-			'preprocess:structuredData',
 			'jsMin:release',
 			'less:main',
 			'languages:release',

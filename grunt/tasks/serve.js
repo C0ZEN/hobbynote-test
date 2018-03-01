@@ -18,8 +18,6 @@ module.exports = function (grunt) {
 			'cssmin:vendorsDev',
 			'copy:vendorsJsDev',
 			'preprocess:dev',
-			'preprocess:devManifest',
-			'preprocess:devStructuredData',
 			'htmlmin:dev',
 			'jsMin:dev',
 			'less:main',

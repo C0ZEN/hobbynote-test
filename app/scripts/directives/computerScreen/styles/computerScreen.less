@@ -1,0 +1,53 @@
+@import (less) "computerScreen.mixins.less";
+@import (less) "computerScreen.variables.less";
+computer-screen {
+	position        : fixed;
+	display         : flex;
+	flex-direction  : column;
+	justify-content : flex-start;
+	align-items     : flex-start;
+	span.screen-text {
+		color       : @computer-screen-font-color;
+		font-size   : @computer-screen-font-size;
+		transform   : skew(-1deg, 13deg);
+		user-select : none;
+		&.cursor {
+			animation-name            : blink;
+			animation-duration        : 800ms;
+			animation-fill-mode       : both;
+			animation-iteration-count : infinite;
+		}
+	}
+	.wait-input {
+		display         : flex;
+		flex-direction  : row;
+		justify-content : flex-start;
+		align-items     : center;
+		margin-top      : 1vh;
+		transform       : skew(-1deg, 13deg);
+		input {
+			background-color : transparent;
+			border           : none;
+			outline          : none;
+			cursor           : default;
+			color            : @computer-screen-font-color;
+			font-size        : @computer-screen-font-size;
+			caret-color      : transparent;
+			position         : relative;
+			max-width        : none;
+			min-width        : auto;
+			&::selection {
+				color      : @computer-screen-font-color;
+				background : transparent;
+			}
+			::after {
+				position  : absolute;
+				top       : 50%;
+				left      : 100%;
+				transform : translateY(-50%);
+				color     : inherit;
+				content   : '▌';
+			}
+		}
+	}
+}

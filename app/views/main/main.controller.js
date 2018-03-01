@@ -25,11 +25,35 @@
 	function mainController() {
 		const vm = this;
 
-		vm.methods = {};
+		vm.methods = {
+			initMode,
+			startLive
+		};
 
 		vm.data = {
-			bombScreenText: '--:--'
+			bombScreenText         : '',
+			bombScreenTimer        : null,
+			bombScreenDefuseCode   : null,
+			computerScreenText     : '',
+			computerScreenWaitInput: false
 		};
+
+		vm.methods.initMode();
+
+		function initMode() {
+			vm.data.bombScreenText          = '--:--';
+			vm.data.bombScreenTimer         = null;
+			vm.data.computerScreenText      = 'Le jeu va bientôt démarrer';
+			vm.data.computerScreenWaitInput = true;
+		}
+
+		function startLive($timeBeforeExplosion, $defuseCode) {
+			vm.data.bombScreenText          = '';
+			vm.data.bombScreenTimer         = $timeBeforeExplosion;
+			vm.data.bombScreenDefuseCode    = $defuseCode;
+			vm.data.computerScreenText      = 'Le jeu vient de démarrer';
+			vm.data.computerScreenWaitInput = true;
+		}
 	}
 
 })(window.angular);

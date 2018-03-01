@@ -3,23 +3,22 @@
  * Created with: generator-cozen-angular
  *
  * Created by: Geoffrey Testelin
- * Date: 27/02/2018
- * Time: 22:45
+ * Date: 01/03/2018
+ * Time: 19:52
  * Version: 0.0.0
  *
  * @ngdoc directive
- * @name hobbynoteTestApp.directive:bomb-screen
+ * @name hobbynoteTestApp.directive:computer-screen
  * @scope
- * @restrict E
+ * @restrict
  * @replace false
  * @transclude false
  *
  * @description
  *
  * [Scope params, one-way binding]
- * @param {string} bombScreenText       > Text to display on the screen of the bomb
- * @param {string} bombScreenTimer      > Time until explosion
- * @param {string} bombScreenDefuseCode > Code for defusing the bomb
+ * @param {string}  computerScreenText              > Text to display on the screen of the computer
+ * @param {boolean} computerScreenWaitInput = false > Display or hide a cursor to show that the user can write something
  *
  * [Scope params, two-way binding]
  *
@@ -31,28 +30,27 @@
 
 	angular
 		.module('hobbynoteTestApp')
-		.directive('bombScreen', bombScreen);
+		.directive('computerScreen', computerScreen);
 
-	bombScreen.$inject = [
+	computerScreen.$inject = [
 		'_',
 		'$timeout',
 		'$window'
 	];
 
-	function bombScreen(_, $timeout, $window) {
+	function computerScreen(_, $timeout, $window) {
 		return {
 			link,
-			restrict        : 'E',
+			restrict        : '',
 			replace         : false,
 			transclude      : false,
 			scope           : {
-				bombScreenText      : '@',
-				bombScreenTimer     : '@',
-				bombScreenDefuseCode: '@'
+				computerScreenText     : '@',
+				computerScreenWaitInput: '@'
 			},
-			templateUrl     : 'scripts/directives/bombScreen/bombScreen.template.html',
+			templateUrl     : 'scripts/directives/computerScreen/computerScreen.template.html',
 			bindToController: true,
-			controller      : 'bombScreenController',
+			controller      : 'computerScreenController',
 			controllerAs    : 'vm'
 		};
 
@@ -68,7 +66,13 @@
 			function init() {
 				$timeout(function () {
 					scope.vm.methods.definePosition();
+					scope.vm.data.isReady = true;
 				}, 100);
+
+				// computerScreenWaitInput
+				if (!_.isBoolean(scope.vm.computerScreenWaitInput)) {
+					scope.vm.computerScreenWaitInput = false;
+				}
 
 				// Listen the resize event
 				$window.addEventListener('resize', methods.resize);

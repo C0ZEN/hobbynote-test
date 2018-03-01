@@ -1,1 +1,8 @@
-span.screen-text {{ vm.bombScreenText }}
+//- Main text
+span.screen-text(
+ng-if="!vm.bombScreenTimer") {{ vm.bombScreenText }}
+
+//- Timer
+timer(
+ng-if="vm.bombScreenTimer"
+end-time="{{ vm.bombScreenTimer }}") {{minutes}}:{{seconds}}

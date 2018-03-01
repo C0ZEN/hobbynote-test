@@ -1,7 +1,15 @@
 @import (less) "bombScreen.mixins.less";
 @import (less) "bombScreen.variables.less";
 bomb-screen {
-	position : fixed;
+	position        : fixed;
+	transform       : rotate3d(0, 1, 1, -24deg) skew(-1deg, 0deg);
+	display         : flex;
+	flex-direction  : row;
+	justify-content : center;
+	align-items     : center;
 	span.screen-text {
+		color       : @color-red-orange;
+		font-size   : 4vw;
+		user-select : none;
 	}
 }
