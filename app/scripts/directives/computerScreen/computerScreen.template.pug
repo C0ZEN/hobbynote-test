@@ -1,16 +1,24 @@
 //- Main text
-span.screen-text(
-dir-terminal-type
-start-typing="{{ vm.data.isReady }}") {{ vm.computerScreenText }}
+span.screen-text.main-text(
+dir-terminal-type=""
+start-typing="{{ vm.data.isReady }}"
+duration="1400"
+on-completion="vm.methods.onMainCompletion()") {{ vm.computerScreenText }}
 
-//- Wait input
-.wait-input(
-ng-if="vm.computerScreenWaitInput")
+//- Commands
+.commands(
+ng-if="vm.data.showTexts")
 
-	//- Input
-	input(
-	ng-model="vm.waitInputModel"
-	autofocus="true"
-	autocomplete="off"
-	spellcheck="false"
-	tabindex="0")
+	//- Texts
+	span.screen-text.text(
+	ng-repeat="text in vm.data.texts track by $index") {{ text }}
+
+	//- Current text
+	.current-text
+
+		//- Current text
+		span.screen-text.current-text {{ vm.data.currentText }}
+
+		//- Caret
+		.dirTerminalType-caret(
+		ng-if="vm.data.showStaticCaret")

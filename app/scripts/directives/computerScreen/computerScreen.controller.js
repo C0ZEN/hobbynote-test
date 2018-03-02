@@ -25,28 +25,39 @@
 		'$element',
 		'$attrs',
 		'screenService',
-		'domService'
+		'domService',
+		'$timeout'
 	];
 
-	function computerScreenController($scope, $element, $attrs, screenService, domService) {
+	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout) {
 		const vm = this;
 
 		vm.methods = {
 			definePosition,
-			setStyles
+			setStyles,
+			onWaitInputChange,
+			onMainCompletion
 		};
 
 		vm.data = {
-			controller: 'computerScreenController',
-			directive : 'computerScreen',
-			listeners : [],
-			styles    : {
+			controller     : 'computerScreenController',
+			directive      : 'computerScreen',
+			listeners      : [],
+			styles         : {
 				top   : 0,
 				left  : 0,
 				height: 0,
 				width : 0
 			},
-			isReady   : false
+			waitInputModel : null,
+			isReady        : false,
+			waitInputStyles: {
+				width: 0
+			},
+			showStaticCaret: false,
+			texts          : [],
+			currentText    : null,
+			showTexts      : false
 		};
 
 		function definePosition() {
@@ -63,6 +74,17 @@
 
 		function setStyles() {
 			$element.css(vm.data.styles);
+		}
+
+		function onWaitInputChange() {
+			$timeout(function () {
+				vm.data.waitInputStyles.width = 9 * vm.data.waitInputModel.length;
+			});
+		}
+
+		function onMainCompletion() {
+			vm.data.showTexts       = true;
+			vm.data.showStaticCaret = true;
 		}
 	}
 

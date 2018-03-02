@@ -6,48 +6,25 @@ computer-screen {
 	flex-direction  : column;
 	justify-content : flex-start;
 	align-items     : flex-start;
-	span.screen-text {
+	transform       : rotate3d(0, -1, 3, 3deg) skew(4deg, 10deg);
+	.screen-text {
 		color       : @computer-screen-font-color;
 		font-size   : @computer-screen-font-size;
-		transform   : skew(-1deg, 13deg);
 		user-select : none;
-		&.cursor {
-			animation-name            : blink;
-			animation-duration        : 800ms;
-			animation-fill-mode       : both;
-			animation-iteration-count : infinite;
+		&.main-text {
+			margin-bottom : 1vh;
 		}
 	}
-	.wait-input {
+	.commands {
 		display         : flex;
-		flex-direction  : row;
+		flex-direction  : column;
 		justify-content : flex-start;
-		align-items     : center;
-		margin-top      : 1vh;
-		transform       : skew(-1deg, 13deg);
-		input {
-			background-color : transparent;
-			border           : none;
-			outline          : none;
-			cursor           : default;
-			color            : @computer-screen-font-color;
-			font-size        : @computer-screen-font-size;
-			caret-color      : transparent;
-			position         : relative;
-			max-width        : none;
-			min-width        : auto;
-			&::selection {
-				color      : @computer-screen-font-color;
-				background : transparent;
-			}
-			::after {
-				position  : absolute;
-				top       : 50%;
-				left      : 100%;
-				transform : translateY(-50%);
-				color     : inherit;
-				content   : '▌';
-			}
+		align-items     : flex-start;
+		.current-text {
+			display         : flex;
+			flex-direction  : row;
+			justify-content : flex-start;
+			align-items     : center;
 		}
 	}
 }
