@@ -1,8 +1,9 @@
 //- Main text
 span.screen-text.main-text(
+ng-if="vm.data.showMainText"
 dir-terminal-type=""
 start-typing="{{ vm.data.isReady }}"
-duration="1400"
+duration="1000"
 on-completion="vm.methods.onMainCompletion()") {{ vm.computerScreenText }}
 
 //- Commands

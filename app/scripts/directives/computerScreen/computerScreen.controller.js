@@ -26,17 +26,21 @@
 		'$attrs',
 		'screenService',
 		'domService',
-		'$timeout'
+		'$timeout',
+		'$window',
+		'utilsService',
+		'_'
 	];
 
-	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout) {
+	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout, $window, utilsService, _) {
 		const vm = this;
 
 		vm.methods = {
 			definePosition,
 			setStyles,
-			onWaitInputChange,
-			onMainCompletion
+			onMainCompletion,
+			onKeyDown,
+			checkForKeyboardAction
 		};
 
 		vm.data = {
@@ -56,8 +60,9 @@
 			},
 			showStaticCaret: false,
 			texts          : [],
-			currentText    : null,
-			showTexts      : false
+			currentText    : '',
+			showTexts      : false,
+			showMainText   : true
 		};
 
 		function definePosition() {
@@ -76,15 +81,53 @@
 			$element.css(vm.data.styles);
 		}
 
-		function onWaitInputChange() {
-			$timeout(function () {
-				vm.data.waitInputStyles.width = 9 * vm.data.waitInputModel.length;
-			});
-		}
-
 		function onMainCompletion() {
 			vm.data.showTexts       = true;
 			vm.data.showStaticCaret = true;
+			$window.addEventListener('keydown', vm.methods.onKeyDown);
+		}
+
+		function onKeyDown($keyEvent) {
+			switch ($keyEvent.keyCode) {
+				case 8:
+					vm.data.currentText = vm.data.currentText.slice(0, -1);
+					break;
+				case 13:
+					if (vm.data.texts.length === 9) {
+						vm.data.showMainText = false;
+					}
+					else if (vm.data.texts.length === 10) {
+						vm.data.texts = _.tail(vm.data.texts);
+					}
+					vm.data.texts.push(angular.copy(vm.data.currentText));
+					vm.data.currentText = '';
+					vm.methods.checkForKeyboardAction(_.last(vm.data.texts));
+					break;
+				case 32:
+					vm.data.currentText += ' ';
+					break;
+				case 16:
+				case 17:
+				case 18:
+				case 20:
+				case 9:
+				case 37:
+				case 38:
+				case 39:
+				case 40:
+				case 93:
+					break;
+				default:
+					vm.data.currentText += $keyEvent.key;
+					break;
+			}
+			utilsService.safeApply($scope);
+		}
+
+		function checkForKeyboardAction($text) {
+			if ($text.match(/(startlive\\()[0-9]{1,}(,)( ){0,1}[0-9]{1,}(\\))/gim)) {
+				
+			}
 		}
 	}
 

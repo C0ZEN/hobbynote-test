@@ -7,13 +7,16 @@ computer-screen {
 	justify-content : flex-start;
 	align-items     : flex-start;
 	transform       : rotate3d(0, -1, 3, 3deg) skew(4deg, 10deg);
+	overflow-y      : auto;
+	overflow-x      : hidden;
+	&::-webkit-scrollbar {
+		display : none;
+	}
 	.screen-text {
-		color       : @computer-screen-font-color;
-		font-size   : @computer-screen-font-size;
-		user-select : none;
-		&.main-text {
-			margin-bottom : 1vh;
-		}
+		color         : @computer-screen-font-color;
+		font-size     : @computer-screen-font-size;
+		user-select   : none;
+		margin-bottom : 0.5vh;
 	}
 	.commands {
 		display         : flex;

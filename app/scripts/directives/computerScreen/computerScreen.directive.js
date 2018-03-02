@@ -85,6 +85,7 @@
 			function destroy() {
 				element.off('$destroy', methods.destroy);
 				$window.removeEventListener('resize', methods.resize);
+				$window.removeEventListener('keydown', scope.vm.methods.onKeyDown);
 				_.forEach(scope.vm.data.listeners, $listener => {
 					$listener();
 				});
