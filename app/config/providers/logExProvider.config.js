@@ -22,7 +22,7 @@
 	function provider(logExProvider, config) {
 		logExProvider.enableLogging(config.debug.logs.enabled);
 		logExProvider.disableDefaultColors(!config.debug.logs.enhancedColors);
-		logExProvider.overrideLogPrefix(function (className) {
+		logExProvider.overrideLogPrefix(className => {
 			const $injector       = angular.injector(['ng']);
 			const $filter         = $injector.get('$filter');
 			const separator       = config.debug.logs.separator;

@@ -1,5 +1,4 @@
 {
-    "disallowDanglingUnderscores": true,
     "disallowArrayDestructuringReturn": true,
     "disallowIdenticalDestructuringNames": true,
     "disallowMixedSpacesAndTabs": "smart",

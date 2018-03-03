@@ -25,15 +25,17 @@
 		'$element',
 		'$attrs',
 		'screenService',
-		'domService'
+		'domService',
+		'moment'
 	];
 
-	function bombScreenController($scope, $element, $attrs, screenService, domService) {
+	function bombScreenController($scope, $element, $attrs, screenService, domService, moment) {
 		const vm = this;
 
 		vm.methods = {
 			definePosition,
-			setStyles
+			setStyles,
+			onStartLive
 		};
 
 		vm.data = {
@@ -45,12 +47,13 @@
 				left  : 0,
 				height: 0,
 				width : 0
-			}
+			},
+			timer     : null
 		};
 
 		function definePosition() {
 			const screen = screenService.getDomScreen();
-			if (screen && screen.length > 0) {
+			if (screen && 0 < screen.length) {
 				const screenBounding  = domService.getBounding(screen);
 				vm.data.styles.top    = screenBounding.top + 65 * screenBounding.height / 100;
 				vm.data.styles.left   = screenBounding.left + 28 * screenBounding.width / 100;
@@ -62,6 +65,10 @@
 
 		function setStyles() {
 			$element.css(vm.data.styles);
+		}
+
+		function onStartLive($event, $data) {
+			vm.data.timer = moment().add($data.time, 's').toString();
 		}
 	}
 

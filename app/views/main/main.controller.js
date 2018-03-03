@@ -26,8 +26,7 @@
 		const vm = this;
 
 		vm.methods = {
-			initMode,
-			startLive
+			initMode
 		};
 
 		vm.data = {
@@ -44,14 +43,6 @@
 			vm.data.bombScreenText          = '--:--';
 			vm.data.bombScreenTimer         = null;
 			vm.data.computerScreenText      = 'Le jeu va bientôt démarrer';
-			vm.data.computerScreenWaitInput = true;
-		}
-
-		function startLive($timeBeforeExplosion, $defuseCode) {
-			vm.data.bombScreenText          = '';
-			vm.data.bombScreenTimer         = $timeBeforeExplosion;
-			vm.data.bombScreenDefuseCode    = $defuseCode;
-			vm.data.computerScreenText      = 'Le jeu vient de démarrer';
 			vm.data.computerScreenWaitInput = true;
 		}
 	}

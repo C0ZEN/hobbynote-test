@@ -17,9 +17,7 @@
  * @description
  *
  * [Scope params, one-way binding]
- * @param {string} bombScreenText       > Text to display on the screen of the bomb
- * @param {string} bombScreenTimer      > Time until explosion
- * @param {string} bombScreenDefuseCode > Code for defusing the bomb
+ * @param {string} bombScreenText > Text to display on the screen of the bomb
  *
  * [Scope params, two-way binding]
  *
@@ -36,19 +34,18 @@
 	bombScreen.$inject = [
 		'_',
 		'$timeout',
-		'$window'
+		'$window',
+		'$rootScope'
 	];
 
-	function bombScreen(_, $timeout, $window) {
+	function bombScreen(_, $timeout, $window, $rootScope) {
 		return {
 			link,
 			restrict        : 'E',
 			replace         : false,
 			transclude      : false,
 			scope           : {
-				bombScreenText      : '@',
-				bombScreenTimer     : '@',
-				bombScreenDefuseCode: '@'
+				bombScreenText: '@'
 			},
 			templateUrl     : 'scripts/directives/bombScreen/bombScreen.template.html',
 			bindToController: true,
@@ -56,7 +53,7 @@
 			controllerAs    : 'vm'
 		};
 
-		function link(scope, element, attrs) {
+		function link(scope, element) {
 			const methods = {
 				init,
 				destroy,
@@ -66,12 +63,15 @@
 			methods.init();
 
 			function init() {
-				$timeout(function () {
+				$timeout(() => {
 					scope.vm.methods.definePosition();
 				}, 100);
 
 				// Listen the resize event
 				$window.addEventListener('resize', methods.resize);
+
+				// Listen for startLive event
+				scope.vm.data.listeners.push($rootScope.$on('startLive', scope.vm.methods.onStartLive));
 
 				// Destroy listeners
 				element.on('$destroy', methods.destroy);

@@ -29,10 +29,11 @@
 		'$timeout',
 		'$window',
 		'utilsService',
-		'_'
+		'_',
+		'$rootScope'
 	];
 
-	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout, $window, utilsService, _) {
+	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout, $window, utilsService, _, $rootScope) {
 		const vm = this;
 
 		vm.methods = {
@@ -40,7 +41,11 @@
 			setStyles,
 			onMainCompletion,
 			onKeyDown,
-			checkForKeyboardAction
+			checkForKeyboardAction,
+			startLive,
+			createLiveValues,
+			validText,
+			onTextCompletion
 		};
 
 		vm.data = {
@@ -62,12 +67,17 @@
 			texts          : [],
 			currentText    : '',
 			showTexts      : false,
-			showMainText   : true
+			showMainText   : true,
+			regexp         : {
+				startLive    : /(startlive\()[0-9]{1,}(,)( ){0,1}[0-9]{1,}(\))/gim,
+				startLiveExec: /\d+/gim
+			},
+			isLive         : false
 		};
 
 		function definePosition() {
 			const screen = screenService.getDomScreen();
-			if (screen && screen.length > 0) {
+			if (screen && 0 < screen.length) {
 				const screenBounding  = domService.getBounding(screen);
 				vm.data.styles.top    = screenBounding.top + 50 * screenBounding.height / 100;
 				vm.data.styles.left   = screenBounding.left + 67 * screenBounding.width / 100;
@@ -84,49 +94,105 @@
 		function onMainCompletion() {
 			vm.data.showTexts       = true;
 			vm.data.showStaticCaret = true;
-			$window.addEventListener('keydown', vm.methods.onKeyDown);
 		}
 
 		function onKeyDown($keyEvent) {
-			switch ($keyEvent.keyCode) {
-				case 8:
-					vm.data.currentText = vm.data.currentText.slice(0, -1);
-					break;
-				case 13:
-					if (vm.data.texts.length === 9) {
-						vm.data.showMainText = false;
-					}
-					else if (vm.data.texts.length === 10) {
-						vm.data.texts = _.tail(vm.data.texts);
-					}
-					vm.data.texts.push(angular.copy(vm.data.currentText));
-					vm.data.currentText = '';
-					vm.methods.checkForKeyboardAction(_.last(vm.data.texts));
-					break;
-				case 32:
-					vm.data.currentText += ' ';
-					break;
-				case 16:
-				case 17:
-				case 18:
-				case 20:
-				case 9:
-				case 37:
-				case 38:
-				case 39:
-				case 40:
-				case 93:
-					break;
-				default:
-					vm.data.currentText += $keyEvent.key;
-					break;
+			if (vm.data.showStaticCaret) {
+				switch ($keyEvent.keyCode) {
+					case 8:
+						vm.data.currentText = vm.data.currentText.slice(0, -1);
+						break;
+					case 13:
+						vm.methods.validText($keyEvent.keyCode);
+						break;
+					case 32:
+						vm.data.currentText += ' ';
+						break;
+					case 16:
+					case 17:
+					case 18:
+					case 20:
+					case 9:
+					case 37:
+					case 38:
+					case 39:
+					case 40:
+					case 93:
+						break;
+					default:
+						vm.data.currentText += $keyEvent.key;
+						break;
+				}
+				utilsService.safeApply($scope);
 			}
-			utilsService.safeApply($scope);
 		}
 
 		function checkForKeyboardAction($text) {
-			if ($text.match(/(startlive\\()[0-9]{1,}(,)( ){0,1}[0-9]{1,}(\\))/gim)) {
-				
+			if ($text.text.match(vm.data.regexp.startLive)) {
+				if (vm.data.isLive) {
+					vm.data.currentText = 'Le live a déjà commencé !';
+					vm.methods.validText(null, 1000);
+				}
+				else {
+					vm.methods.startLive(vm.methods.createLiveValues($text.text));
+				}
+			}
+		}
+
+		function createLiveValues($text) {
+			let values = $text.match(vm.data.regexp.startLiveExec);
+			values     = _.map(values, $value => {
+				return parseInt($value, 10);
+			});
+			values     = {
+				time      : values[0],
+				defuseCode: values[1]
+			};
+			if (3600 < values.time) {
+				values.time         = 3600;
+				vm.data.currentText = 'Le timer max pour la bombe est de 3600 secondes';
+				vm.methods.validText(null, 1000);
+			}
+			return values;
+		}
+
+		function startLive($values) {
+			$rootScope.$broadcast('startLive', $values);
+			vm.data.isLive      = true;
+			vm.data.currentText = 'Le live a commencé !';
+			vm.methods.validText(null, 1000);
+		}
+
+		function validText($keyCode, $duration) {
+			let keyCode  = $keyCode;
+			let duration = $duration;
+			if (!_.isNumber(keyCode)) {
+				keyCode = null;
+			}
+			if (!_.isNumber(duration)) {
+				duration = 0;
+			}
+			if (keyCode === vm.data.texts.length) {
+				vm.data.showMainText = false;
+			}
+			else if (keyCode === vm.data.texts.length) {
+				vm.data.texts = _.tail(vm.data.texts);
+			}
+			vm.data.showStaticCaret = false;
+			vm.data.texts.push({
+				text       : angular.copy(vm.data.currentText),
+				duration,
+				removeCaret: 0 === duration ? 0 : 1000
+			});
+			vm.data.currentText = '';
+			vm.methods.checkForKeyboardAction(_.last(vm.data.texts));
+		}
+
+		function onTextCompletion($index, $text) {
+			if ($index + 1 === vm.data.texts.length) {
+				$timeout(() => {
+					vm.data.showStaticCaret = true;
+				}, $text.removeCaret);
 			}
 		}
 	}

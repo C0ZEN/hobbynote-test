@@ -31,14 +31,14 @@
 		};
 
 		function getStyles($element) {
-			if ($element && $element.length > 0) {
+			if ($element && 0 < $element.length) {
 				return $window.getComputedStyle($element[0], null);
 			}
 			return null;
 		}
 
 		function getBounding($element) {
-			if ($element && $element.length > 0) {
+			if ($element && 0 < $element.length) {
 				return $element[0].getBoundingClientRect();
 			}
 			return null;

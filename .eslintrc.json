@@ -85,15 +85,7 @@
         "no-labels": "error",
         "no-lone-blocks": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": [
-            "error",
-            {
-                "ignore": [
-                    0,
-                    1
-                ]
-            }
-        ],
+        "no-magic-numbers": "off",
         "no-multi-spaces": "off",
         "no-multi-str": "error",
         "no-new": "error",
@@ -158,10 +150,7 @@
         "no-process-exit": "error",
         "no-restricted-modules": "error",
         "no-sync": "error",
-        "array-bracket-newline": [
-            "error",
-            "always"
-        ],
+        "array-bracket-newline": "off",
         "array-bracket-spacing": "error",
         "array-element-newline": [
             "error",
@@ -197,17 +186,9 @@
         "id-blacklist": "off",
         "id-length": "off",
         "id-match": "off",
-        "indent": [
-            "error",
-            "tab"
-        ],
+        "indent": "off",
         "jsx-quotes": "error",
-        "key-spacing": [
-            "error",
-            {
-                "align": "colon"
-            }
-        ],
+        "key-spacing": "off",
         "keyword-spacing": "error",
         "line-comment-position": "error",
         "linebreak-style": "off",
@@ -227,7 +208,7 @@
         "no-bitwise": "error",
         "no-continue": "error",
         "no-lonely-if": "error",
-        "no-mixed-operators": "error",
+        "no-mixed-operators": "off",
         "no-mixed-spaces-and-tabs": "error",
         "no-multi-assign": "error",
         "no-multiple-empty-lines": "error",

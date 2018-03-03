@@ -31,6 +31,5 @@ module.exports = function (grunt) {
 				'merge-json:min'
 			]);
 		}
-	})
-	;
+	});
 };

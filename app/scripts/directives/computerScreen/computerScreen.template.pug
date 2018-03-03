@@ -12,7 +12,11 @@ ng-if="vm.data.showTexts")
 
 	//- Texts
 	span.screen-text.text(
-	ng-repeat="text in vm.data.texts track by $index") {{ text }}
+	ng-repeat="text in vm.data.texts track by $index"
+	dir-terminal-type=""
+	duration="{{ text.duration }}"
+	on-completion="vm.methods.onTextCompletion($index, text)"
+	remove-caret="{{ text.removeCaret }}") {{ text.text }}
 
 	//- Current text
 	.current-text

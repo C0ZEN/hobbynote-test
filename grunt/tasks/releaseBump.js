@@ -45,6 +45,5 @@ module.exports = function (grunt) {
 			'prompt:isChangelogUpdated',
 			'if:isChangelogUpdated'
 		]);
-	})
-	;
+	});
 };

@@ -29,6 +29,5 @@ module.exports = function (grunt) {
 			'notify:serve',
 			'watch'
 		]);
-	})
-	;
+	});
 };

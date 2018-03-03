@@ -12,3 +12,4 @@
 /app/scripts/hobbynote-test-app.min.js
 /app/scripts/hobbynote-test-app.min.js.map
 /app/scripts/vendors.min.js
+/app/scripts/directives/dirTerminalType/dirTerminalType.directive.js

@@ -54,7 +54,7 @@
 			controllerAs    : 'vm'
 		};
 
-		function link(scope, element, attrs) {
+		function link(scope, element) {
 			const methods = {
 				init,
 				destroy,
@@ -64,18 +64,19 @@
 			methods.init();
 
 			function init() {
-				$timeout(function () {
+				$timeout(() => {
 					scope.vm.methods.definePosition();
 					scope.vm.data.isReady = true;
 				}, 100);
 
-				// computerScreenWaitInput
+				// ComputerScreenWaitInput
 				if (!_.isBoolean(scope.vm.computerScreenWaitInput)) {
 					scope.vm.computerScreenWaitInput = false;
 				}
 
-				// Listen the resize event
+				// Listeners
 				$window.addEventListener('resize', methods.resize);
+				$window.addEventListener('keydown', scope.vm.methods.onKeyDown);
 
 				// Destroy listeners
 				element.on('$destroy', methods.destroy);

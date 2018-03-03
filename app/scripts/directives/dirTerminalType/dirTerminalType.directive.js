@@ -1,8 +1,3 @@
-/**
- * A directive for AngularJS that makes an effect akin to text being typed on a computer terminal.
- *
- * Copyright 2014 Michael Bromley <michael@michaelbromley.co.uk>
- */
 (function () {
 	'use strict';
 
@@ -19,10 +14,6 @@
 	];
 
 	function dirTerminalType($window, $document, $timeout, $interpolate, $parse) {
-
-		/**
-		 * requestAnimationFrame polyfill from http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-		 */
 		(function () {
 			let lastTime  = 0;
 			const vendors = ['webkit',
@@ -34,11 +25,15 @@
 			}
 
 			if (!window.requestAnimationFrame) {
-				window.requestAnimationFrame = function (callback, element) {
+				window.requestAnimationFrame = function (callback) {
 					const currTime   = new Date().getTime();
 					const timeToCall = Math.max(0, 16 - (currTime - lastTime));
-					const id         = window.setTimeout(function () { callback(currTime + timeToCall); },
-						timeToCall);
+					const id         = window.setTimeout(
+						() => {
+							callback(currTime + timeToCall);
+						},
+						timeToCall
+					);
 					lastTime         = currTime + timeToCall;
 					return id;
 				};
@@ -51,20 +46,11 @@
 			}
 		}());
 
-		/**
-		 * Recursively traverse the node tree and set the nodeValue of any text nodes to '', whilst
-		 * storing the original value in the newly-created field _originalNodeValue for later use.
-		 *
-		 * @param node
-		 * @param totalChars
-		 * @param originalNodeValues
-		 * @returns {number}
-		 */
 		function clearTextAndStoreValues(node, totalChars, originalNodeValues) {
 			let i;
 			totalChars = totalChars || 0;
 
-			if (node.nodeValue !== null) {
+			if (null !== node.nodeValue) {
 				const nodeValue = node.nodeValue.replace(/\s+/g, ' ');
 				originalNodeValues.values.push(nodeValue);
 				node.nodeValue = '';
@@ -78,45 +64,22 @@
 			return totalChars;
 		}
 
-		/**
-		 * Update the nodeValues of any text nodes within element, filling in the corresponding
-		 * amount of characters commensurate with the current progress.
-		 *
-		 * @param element
-		 * @param currentIteration
-		 * @param totalIterations
-		 * @param totalChars
-		 * @param originalNodeValues
-		 * @returns {boolean}
-		 */
 		function type(element, currentIteration, totalIterations, totalChars, originalNodeValues) {
 			const currentChar = Math.ceil(currentIteration / totalIterations * totalChars);
 
 			const charsTyped = typeUpToCurrentChar(element, currentChar, 0, originalNodeValues, true);
 
-			let done = totalChars <= charsTyped;
+			const done = totalChars <= charsTyped;
 			return done;
 		}
 
-		/**
-		 * Recursive function that traverses a node tree and updates the nodeValue of each
-		 * text node until the total number of characters "typed" is equal to the value
-		 * of currentChar.
-		 *
-		 * @param node
-		 * @param currentChar
-		 * @param charsTyped
-		 * @param originalNodeValues
-		 * @param resetCounter
-		 * @returns {*}
-		 */
 		function typeUpToCurrentChar(node, currentChar, charsTyped, originalNodeValues, resetCounter) {
 
 			if (resetCounter) {
 				originalNodeValues.counter = 0;
 			}
 
-			if (node.nodeValue !== null) {
+			if (null !== node.nodeValue) {
 				const originalValue = originalNodeValues.values[originalNodeValues.counter];
 				if (currentChar - charsTyped < originalValue.length) {
 					const charsToType = currentChar - charsTyped;
@@ -143,19 +106,13 @@
 			return charsTyped;
 		}
 
-		/**
-		 * Add the caret to the end of the element, and style it to fit the text.
-		 * First line checks if a caret already exists, in which case do nothing.
-		 *
-		 * @param element
-		 */
 		function addCaret(element) {
-			const elementAlreadyHasCaret = element[0].querySelector('.dirTerminalType-caret') !== null;
+			const elementAlreadyHasCaret = null !== element[0].querySelector('.dirTerminalType-caret');
 
 			if (!elementAlreadyHasCaret) {
-				let height            = parseInt($window.getComputedStyle(element[0])['font-size']);
-				height -= 2; // make it a bit smaller to prevent it interfering with document flow.
-				const backgroundColor = $window.getComputedStyle(element[0])['color'];
+				let height            = parseInt($window.getComputedStyle(element[0])['font-size'], 10);
+				height -= 2;
+				const backgroundColor = $window.getComputedStyle(element[0]).color;
 				const width           = Math.ceil(height * 0.05);
 				const marginBottom    = Math.ceil(height * -0.1);
 				const caret           = $document[0].createElement('span');
@@ -173,21 +130,10 @@
 			angular.element(caret).remove();
 		}
 
-		/**
-		 * If any of the text nodes contain interpolation expressions {{ like.this }}, we need to
-		 * interpolate them to get the actual value to be displayed. This will change the
-		 * totalChars count so that must also be updated.
-		 *
-		 * @param node
-		 * @param scope
-		 * @param totalChars
-		 * @param originalNodeValues
-		 * @param resetCounter
-		 */
 		function interpolateText(node, scope, totalChars, originalNodeValues, resetCounter) {
-			let i,
+			let currentLength,
 				currentNodeContent,
-				currentLength,
+				i,
 				interpolatedContent,
 				interpolatedLength,
 				lengthDelta;
@@ -196,7 +142,7 @@
 				originalNodeValues.counter = 0;
 			}
 
-			if (node.nodeValue !== null) {
+			if (null !== node.nodeValue) {
 				currentNodeContent  = originalNodeValues.values[originalNodeValues.counter];
 				currentLength       = currentNodeContent.length;
 				interpolatedContent = $interpolate(currentNodeContent)(scope);
@@ -218,14 +164,8 @@
 
 		return {
 			restrict: 'AE',
-			link    : function (scope, element, attrs) {
+			link(scope, element, attrs) {
 
-				/**
-				 * These two variables are used to store the original text values of any text nodes in the element. The original approach involved
-				 * simply appending a new property onto the DOM node itself, but this proved to be a bad idea since it breaks in IE. This new approach
-				 * is a little more complex since we now have to track the index of each text node in the originalNodeValues array.
-				 * @type {Array}
-				 */
 				const originalNodeValues = {
 					values : [],
 					counter: 0
@@ -233,19 +173,19 @@
 
 				let totalChars = clearTextAndStoreValues(element[0], 0, originalNodeValues);
 
-				let start, elapsed;
+				let elapsed, start;
 				const duration         = attrs.duration || 1000;
 				const removeCaretAfter = attrs.removeCaret || 1000;
 				const onCompletion     = $parse(attrs.onCompletion) || null;
-				const forceCaret       = typeof attrs.forceCaret !== 'undefined';
+				const forceCaret       = 'undefined' !== typeof attrs.forceCaret;
 
-				if (typeof attrs.startTyping !== 'undefined') {
+				if ('undefined' !== typeof attrs.startTyping) {
 					if (forceCaret) {
 						addCaret(element);
 					}
-					scope.$watch(function () {
+					scope.$watch(() => {
 						return scope.$eval(attrs.startTyping);
-					}, function (val) {
+					}, val => {
 						if (val) {
 							startTyping();
 						}
@@ -261,14 +201,10 @@
 					window.requestAnimationFrame(tick);
 				}
 
-				/**
-				 * This is the animation function that gets looped in a requestAnimationFrame call.
-				 * @param timestamp
-				 */
 				function tick(timestamp) {
-					let currentIteration, totalIterations, done;
+					let currentIteration, done, totalIterations;
 
-					if (typeof start === 'undefined') {
+					if ('undefined' === typeof start) {
 						start = timestamp;
 					}
 					elapsed = timestamp - start;
@@ -281,14 +217,13 @@
 						window.requestAnimationFrame(tick);
 					}
 					else {
-						$timeout(function () {
+						$timeout(() => {
 							removeCaret(element);
 						}, removeCaretAfter);
 
-						start = undefined;  // reset
+						start = undefined;
 
-						// if a callback was defined by the on-completion attribute, invoke it now
-						if (onCompletion !== null) {
+						if (null !== onCompletion) {
 							onCompletion(scope);
 						}
 					}

@@ -12,19 +12,23 @@
         </value>
       </option>
     </inspection_tool>
+    <inspection_tool class="Eslint" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="5">
+          <list size="6">
             <item index="0" class="java.lang.String" itemvalue="icon" />
             <item index="1" class="java.lang.String" itemvalue="start-typing" />
             <item index="2" class="java.lang.String" itemvalue="force-caret" />
             <item index="3" class="java.lang.String" itemvalue="duration" />
             <item index="4" class="java.lang.String" itemvalue="on-completion" />
+            <item index="5" class="java.lang.String" itemvalue="end-time" />
           </list>
         </value>
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
+    <inspection_tool class="JSHint" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Jscs" enabled="true" level="ERROR" enabled_by_default="true" />
   </profile>
 </component>
