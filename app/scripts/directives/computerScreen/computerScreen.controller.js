@@ -30,10 +30,12 @@
 		'$window',
 		'utilsService',
 		'_',
-		'$rootScope'
+		'$rootScope',
+		'$interval',
+		'mainConstant'
 	];
 
-	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout, $window, utilsService, _, $rootScope) {
+	function computerScreenController($scope, $element, $attrs, screenService, domService, $timeout, $window, utilsService, _, $rootScope, $interval, mainConstant) {
 		const vm = this;
 
 		vm.methods = {
@@ -45,7 +47,9 @@
 			startLive,
 			createLiveValues,
 			validText,
-			onTextCompletion
+			onTextCompletion,
+			startPickingRandomMessages,
+			checkForVictory
 		};
 
 		vm.data = {
@@ -72,7 +76,11 @@
 				startLive    : /(startlive\()[0-9]{1,}(,)( ){0,1}[0-9]{1,}(\))/gim,
 				startLiveExec: /\d+/gim
 			},
-			isLive         : false
+			isLive         : false,
+			liveConfig     : null,
+			intervals      : {
+				randomMessage: null
+			}
 		};
 
 		function definePosition() {
@@ -103,7 +111,7 @@
 						vm.data.currentText = vm.data.currentText.slice(0, -1);
 						break;
 					case 13:
-						vm.methods.validText($keyEvent.keyCode);
+						vm.methods.validText(0);
 						break;
 					case 32:
 						vm.data.currentText += ' ';
@@ -131,10 +139,13 @@
 			if ($text.text.match(vm.data.regexp.startLive)) {
 				if (vm.data.isLive) {
 					vm.data.currentText = 'Le live a déjà commencé !';
-					vm.methods.validText(null, 1000);
+					vm.methods.validText(1000);
 				}
 				else {
-					vm.methods.startLive(vm.methods.createLiveValues($text.text));
+					const values = vm.methods.createLiveValues($text.text);
+					if (values) {
+						vm.methods.startLive(values);
+					}
 				}
 			}
 		}
@@ -148,10 +159,15 @@
 				time      : values[0],
 				defuseCode: values[1]
 			};
+			if (999 < values.defuseCode) {
+				vm.data.currentText = 'Le code doit être compris entre 0 et 999 (3 chiffres)';
+				vm.methods.validText(1000);
+				return null;
+			}
 			if (3600 < values.time) {
 				values.time         = 3600;
 				vm.data.currentText = 'Le timer max pour la bombe est de 3600 secondes';
-				vm.methods.validText(null, 1000);
+				vm.methods.validText(1000);
 			}
 			return values;
 		}
@@ -160,22 +176,20 @@
 			$rootScope.$broadcast('startLive', $values);
 			vm.data.isLive      = true;
 			vm.data.currentText = 'Le live a commencé !';
-			vm.methods.validText(null, 1000);
+			vm.data.liveConfig  = $values;
+			vm.methods.validText(1000);
+			vm.methods.startPickingRandomMessages();
 		}
 
-		function validText($keyCode, $duration) {
-			let keyCode  = $keyCode;
+		function validText($duration) {
 			let duration = $duration;
-			if (!_.isNumber(keyCode)) {
-				keyCode = null;
-			}
 			if (!_.isNumber(duration)) {
 				duration = 0;
 			}
-			if (keyCode === vm.data.texts.length) {
+			if (9 === vm.data.texts.length) {
 				vm.data.showMainText = false;
 			}
-			else if (keyCode === vm.data.texts.length) {
+			else if (10 === vm.data.texts.length) {
 				vm.data.texts = _.tail(vm.data.texts);
 			}
 			vm.data.showStaticCaret = false;
@@ -193,6 +207,32 @@
 				$timeout(() => {
 					vm.data.showStaticCaret = true;
 				}, $text.removeCaret);
+			}
+		}
+
+		function startPickingRandomMessages() {
+			vm.data.intervals.randomMessage = $interval(() => {
+				const randomCommentIndex = _.random(0, mainConstant.comments.length);
+				const randomComment      = mainConstant.comments[randomCommentIndex];
+				if (randomComment) {
+					vm.data.currentText = randomComment.comment;
+					vm.methods.validText(1000);
+					const codes = randomComment.comment.match(/\d{3}/gmi);
+					if (codes && 0 < codes.length) {
+						const code = parseInt(codes[0], 10);
+						vm.methods.checkForVictory(randomComment, code);
+					}
+				}
+			}, 5000);
+		}
+
+		function checkForVictory($comment, $code) {
+			if ($code === vm.data.liveConfig.defuseCode) {
+				$timeout(() => {
+					vm.data.currentText = 'Félications ' + $comment.firstname + ' !';
+					vm.methods.validText(1000);
+				}, 1000);
+				$interval.cancel(vm.data.intervals.randomMessage);
 			}
 		}
 	}
