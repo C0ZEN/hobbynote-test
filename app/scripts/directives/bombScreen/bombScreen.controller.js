@@ -35,7 +35,8 @@
 		vm.methods = {
 			definePosition,
 			setStyles,
-			onStartLive
+			onStartLive,
+			onStopLive
 		};
 
 		vm.data = {
@@ -69,6 +70,10 @@
 
 		function onStartLive($event, $data) {
 			vm.data.timer = moment().add($data.time, 's').toString();
+		}
+
+		function onStopLive() {
+			vm.data.timer = moment();
 		}
 	}
 

@@ -49,7 +49,8 @@
 			validText,
 			onTextCompletion,
 			startPickingRandomMessages,
-			checkForVictory
+			checkForVictory,
+			stopLive
 		};
 
 		vm.data = {
@@ -79,8 +80,10 @@
 			isLive         : false,
 			liveConfig     : null,
 			intervals      : {
-				randomMessage: null
-			}
+				randomMessage    : null,
+				randomMessageTime: 1000
+			},
+			isFinished     : false
 		};
 
 		function definePosition() {
@@ -179,6 +182,7 @@
 			vm.data.liveConfig  = $values;
 			vm.methods.validText(1000);
 			vm.methods.startPickingRandomMessages();
+			$timeout(vm.methods.stopLive, $values.time * 1000);
 		}
 
 		function validText($duration) {
@@ -205,35 +209,47 @@
 		function onTextCompletion($index, $text) {
 			if ($index + 1 === vm.data.texts.length) {
 				$timeout(() => {
-					vm.data.showStaticCaret = true;
+					if (!vm.data.isFinished) {
+						vm.data.showStaticCaret = true;
+					}
 				}, $text.removeCaret);
 			}
 		}
 
 		function startPickingRandomMessages() {
 			vm.data.intervals.randomMessage = $interval(() => {
-				const randomCommentIndex = _.random(0, mainConstant.comments.length);
-				const randomComment      = mainConstant.comments[randomCommentIndex];
-				if (randomComment) {
-					vm.data.currentText = randomComment.comment;
-					vm.methods.validText(1000);
-					const codes = randomComment.comment.match(/\d{3}/gmi);
-					if (codes && 0 < codes.length) {
-						const code = parseInt(codes[0], 10);
-						vm.methods.checkForVictory(randomComment, code);
+				if (vm.data.isLive) {
+					const randomCommentIndex = _.random(0, mainConstant.comments.length);
+					const randomComment      = mainConstant.comments[randomCommentIndex];
+					if (randomComment) {
+						vm.data.currentText = randomComment.comment;
+						vm.methods.validText(1000);
+						const codes = randomComment.comment.match(/\d{3}/gmi);
+						if (codes && 0 < codes.length) {
+							const code = parseInt(codes[0], 10);
+							vm.methods.checkForVictory(randomComment, code);
+						}
 					}
 				}
-			}, 5000);
+			}, vm.data.intervals.randomMessageTime);
 		}
 
 		function checkForVictory($comment, $code) {
 			if ($code === vm.data.liveConfig.defuseCode) {
 				$timeout(() => {
-					vm.data.currentText = 'Félications ' + $comment.firstname + ' !';
+					vm.data.currentText = 'Félications ' + $comment.firstname + ', c\'est gagné !';
 					vm.methods.validText(1000);
 				}, 1000);
-				$interval.cancel(vm.data.intervals.randomMessage);
+				vm.methods.startLive();
 			}
+		}
+
+		function stopLive() {
+			$rootScope.$broadcast('stopLive');
+			vm.data.isLive          = false;
+			vm.data.showStaticCaret = false;
+			vm.data.isFinished      = true;
+			$interval.cancel(vm.data.intervals.randomMessage);
 		}
 	}
 

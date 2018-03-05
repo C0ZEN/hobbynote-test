@@ -70,8 +70,9 @@
 				// Listen the resize event
 				$window.addEventListener('resize', methods.resize);
 
-				// Listen for startLive event
+				// Listen for computer screen events
 				scope.vm.data.listeners.push($rootScope.$on('startLive', scope.vm.methods.onStartLive));
+				scope.vm.data.listeners.push($rootScope.$on('stopLive', scope.vm.methods.onStopLive));
 
 				// Destroy listeners
 				element.on('$destroy', methods.destroy);

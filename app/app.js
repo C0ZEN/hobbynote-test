@@ -26,7 +26,8 @@
 			'LocalStorageModule',
 			'log.ex.uo',
 			'webicon',
-			'timer'
+			'timer',
+			'vjs.video'
 		]);
 
 })(window.angular);
