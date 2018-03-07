@@ -1,6 +1,6 @@
 {
 	"useStaticFilesLoader": {
-		"prefix": "languages/min/",
+		"prefix": "languages/",
 		"suffix": ".min.json"
 	},
 	"html5Mode": {

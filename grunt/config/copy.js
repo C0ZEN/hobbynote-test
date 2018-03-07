@@ -57,9 +57,14 @@ module.exports = {
 		}
 	},
 	medias      : {
-		expand: true,
-		dest  : '<%= currentTarget %>/medias',
-		src   : '<%= paths.app %>/medias'
+		files: [
+			{
+				expand: true,
+				cwd   : '<%= paths.app %>/medias',
+				src   : '**',
+				dest  : '<%= currentTarget %>/medias'
+			}
+		]
 	},
 	vendors     : {
 		src : '<%= paths.app %>/config/tpls/vendors.tpl.html',
@@ -74,8 +79,13 @@ module.exports = {
 		dest: '<%= currentTarget %>/scripts/vendors.min.js'
 	},
 	fonts       : {
-		expand: true,
-		dest  : '<%= currentTarget %>/fonts',
-		src   : '<%= paths.app %>/fonts'
+		files: [
+			{
+				expand: true,
+				cwd   : '<%= paths.app %>/fonts',
+				src   : '**',
+				dest  : '<%= currentTarget %>/fonts'
+			}
+		]
 	}
 };
