@@ -1,6 +1,6 @@
 {
   "name": "hobbynote-test-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {
     "reset-css": "^2.2.1",
     "jquery": "^3.3.1",
