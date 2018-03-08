@@ -50,7 +50,8 @@
 			onTextCompletion,
 			startPickingRandomMessages,
 			checkForVictory,
-			stopLive
+			stopLive,
+			startCountdown
 		};
 
 		vm.data = {
@@ -82,6 +83,9 @@
 			intervals      : {
 				randomMessage    : null,
 				randomMessageTime: 5000
+			},
+			timeouts       : {
+				explodeTimeout: null
 			},
 			isFinished     : false
 		};
@@ -194,6 +198,7 @@
 			vm.data.liveConfig  = $values;
 			vm.methods.validText(1000);
 			vm.methods.startPickingRandomMessages();
+			vm.methods.startCountdown();
 			$timeout(vm.methods.stopLive, $values.time * 1000);
 		}
 
@@ -262,6 +267,16 @@
 			vm.data.showStaticCaret = false;
 			vm.data.isFinished      = true;
 			$interval.cancel(vm.data.intervals.randomMessage);
+			$timeout.cancel(vm.data.timeouts.explodeTimeout);
+		}
+
+		function startCountdown() {
+			vm.data.timeouts.explodeTimeout = $timeout(() => {
+				vm.data.currentText = 'Trop tard !';
+				vm.methods.validText(1000);
+				vm.methods.stopLive();
+				$rootScope.$broadcast('showExplosion');
+			}, vm.data.liveConfig.time * 1000);
 		}
 	}
 

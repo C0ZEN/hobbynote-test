@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Refactored the files
 - The delay between each messages for the screen is now 5000ms
 - More keys escaped from the computer
+- The explosion is now visible if the bomb time is finished
 
 ## [1.0.0]
 ### Added

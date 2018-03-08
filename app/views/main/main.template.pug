@@ -14,11 +14,13 @@
 	computer-screen-wait-input="{{ vm.data.computerScreenWaitInput }}")
 
 	//- Video
-	//video.video-js.vjs-default-skin(
-	//preload="auto"
-	//width="640"
-	//height="264"
-	//vjs-video)
+	video.video-js.vjs-default-skin(
+	ng-if="vm.data.showExplosion"
+	preload="auto"
+	width="100vw"
+	height="100vh"
+	vjs-video
+	autoplay="true")
 
 		//- Video source
 		source(

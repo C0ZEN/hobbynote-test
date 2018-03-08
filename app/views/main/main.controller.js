@@ -20,13 +20,21 @@
 		.module('hobbynoteTestApp')
 		.controller('mainController', mainController);
 
-	mainController.$inject = [];
+	mainController.$inject = [
+		'_',
+		'$scope',
+		'$log',
+		'$rootScope'
+	];
 
-	function mainController() {
+	function mainController(_, $scope, $log, $rootScope) {
 		const vm = this;
 
 		vm.methods = {
-			initMode
+			initMode,
+			destroy,
+			vjsVideoReady,
+			showExplosion
 		};
 
 		vm.data = {
@@ -34,16 +42,36 @@
 			bombScreenTimer        : null,
 			bombScreenDefuseCode   : null,
 			computerScreenText     : '',
-			computerScreenWaitInput: false
+			computerScreenWaitInput: false,
+			listeners              : [],
+			showExplosion          : false
 		};
 
 		vm.methods.initMode();
+
+		vm.data.listeners.push($scope.$on('vjsVideoReady', vm.methods.vjsVideoReady));
+		vm.data.listeners.push($rootScope.$on('showExplosion', vm.methods.showExplosion));
+		vm.data.listeners.push($scope.$on('$destroy', vm.methods.destroy));
 
 		function initMode() {
 			vm.data.bombScreenText          = '--:--';
 			vm.data.bombScreenTimer         = null;
 			vm.data.computerScreenText      = 'Le jeu va bientôt démarrer';
 			vm.data.computerScreenWaitInput = true;
+		}
+
+		function destroy() {
+			_.forEach(vm.data.listeners, $listener => {
+				$listener();
+			});
+		}
+
+		function vjsVideoReady($event, $data) {
+			$log.log($data);
+		}
+
+		function showExplosion() {
+			vm.data.showExplosion = true;
 		}
 	}
 
