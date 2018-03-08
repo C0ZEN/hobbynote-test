@@ -23,7 +23,8 @@
 	mainService.$inject = [];
 
 	function mainService() {
-		return {};
+		return {
+};
 	}
 
 })(window.angular);
