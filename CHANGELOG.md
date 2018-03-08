@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Refactored the files
 - The delay between each messages for the screen is now 5000ms
+- More keys escaped from the computer
 
 ## [1.0.0]
 ### Added

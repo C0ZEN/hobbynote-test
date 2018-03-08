@@ -129,6 +129,18 @@
 					case 39:
 					case 40:
 					case 93:
+					case 112:
+					case 113:
+					case 114:
+					case 115:
+					case 116:
+					case 117:
+					case 118:
+					case 119:
+					case 120:
+					case 121:
+					case 122:
+					case 123:
 						break;
 					default:
 						vm.data.currentText += $keyEvent.key;
