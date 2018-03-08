@@ -81,7 +81,7 @@
 			liveConfig     : null,
 			intervals      : {
 				randomMessage    : null,
-				randomMessageTime: 1000
+				randomMessageTime: 5000
 			},
 			isFinished     : false
 		};
