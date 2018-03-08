@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Refactored the files
+- The delay between each messages for the screen is now 5000ms
 
 ## [1.0.0]
 ### Added
